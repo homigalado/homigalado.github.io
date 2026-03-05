@@ -17,7 +17,6 @@
       justify-content: center;
       overflow: hidden;
       font-family: 'Courier New', Courier, monospace;
-      transition: background-color 1.5s ease;
     }
 
     #pato-gif {
@@ -25,17 +24,15 @@
       image-rendering: pixelated;
       width: 256px;
       height: 256px;
-      opacity: 0;
-      transition: opacity 1s ease;
     }
 
     #overlay {
       text-align: center;
-      color: #444;
+      color: #c5c5c5;
       z-index: 10;
     }
 
-    #overlay:hover { color: #888; }
+    #overlay:hover { color: #ffffff; }
 
     .btn-perigo {
       background: none;
@@ -55,7 +52,6 @@
     }
 
     body.revealed { background-color: #ADD9F1; }
-    #pato-gif.visible { display: block; opacity: 1; }
   </style>
 </head>
 <body>
@@ -70,28 +66,16 @@
 </audio>
 
 <script>
-  function liberarOPato() {
-    const overlay = document.getElementById('overlay');
-    const pato = document.getElementById('pato-gif');
+function liberarOPato() {
+  const overlay = document.getElementById('overlay');
+  const pato = document.getElementById('pato-gif');
+  const audio = document.getElementById('duck-song');
 
-    document.body.classList.add('revealed');
-    overlay.style.display = 'none';
-    pato.classList.add('visible');
+  document.body.classList.add('revealed');
+  overlay.style.display = 'none';
+  pato.style.display = 'block';
 
-    pato.addEventListener('click', tocarEEsconderPato, { once: true });
-  }
-
-  function tocarEEsconderPato() {
-    const pato = document.getElementById('pato-gif');
-    const audio = document.getElementById('duck-song');
-
-    pato.classList.remove('visible');
-    pato.style.display = 'none';
-
-    audio.currentTime = 0;
-    const p = audio.play();
-    if (p && typeof p.catch === 'function') {
-      p.catch((err) => console.log('play() bloqueado/erro:', err));
-    }
-  }
+  audio.currentTime = 0;
+  audio.play().catch(err => console.log('play() bloqueado:', err));
+}
 </script>
