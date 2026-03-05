@@ -76,9 +76,10 @@ function liberarOPato() {
   pato.style.display = 'block';
 
   audio.currentTime = 0;
-  audio.play().catch(err => console.log('play() bloqueado:', err));
   audio.volume = 0.3;
+  audio.play().catch(err => console.log('play() bloqueado:', err));
 }
 </script>
+
 
 
